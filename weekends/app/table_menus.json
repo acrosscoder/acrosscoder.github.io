@@ -1,0 +1,26 @@
+{
+"tbl_menu":[
+		{"tablenum":"1","loc":"location1"},
+		{"tablenum":"2","loc":"location1"},
+		{"tablenum":"3","loc":"location1"},
+		{"tablenum":"4","loc":"location1"},
+		{"tablenum":"5","loc":"location1"},
+		{"tablenum":"6","loc":"location1"},
+		{"tablenum":"7","loc":"location1"},
+		{"tablenum":"8","loc":"location1"},
+		{"tablenum":"9","loc":"location1"},
+		{"tablenum":"10","loc":"location1"},
+		{"tablenum":"11","loc":"location1"},
+		{"tablenum":"12","loc":"location1"}
+
+		
+	],
+"locations":[
+{"locationname":"location 1","locid":"1"},
+{"locationname":"location 2","locid":"2"}
+]
+
+}
+
+
+

@@ -1,0 +1,34 @@
+{
+"menu":[
+		{ 
+		"userTypeId":"1", 
+		"menu_name":[
+		{"name":"DINE IN","function":"take_order()","icon_class":"jicon-dine-in"},
+		{"name":"TAKE OUT","function":"","icon_class":"jicon-takeout"},
+		{"name":"ORDER STATUS","function":"","icon_class":"jicon-status"},
+		{"name":"PAYOUT","function":"payout_app()","icon_class":"jicon-payout"},
+		{"name":"ADMIN","function":"","icon_class":"jicon-admin"}
+		]
+		},
+		{ 
+		"userTypeId":"6",
+		"menu_name":[
+		{"name":"DINE IN","function":"take_order()"},
+		{"name":"TAKE OUT","function":""},
+		{"name":"ORDER STATUS","function":""},
+		{"name":"PAYOUT","function":"payout_app()"}
+		]
+		},
+		{ 
+		"userTypeId":"7",
+		"menu_name":[
+		{"name":"DINE IN","function":"take_order()"}
+		]
+		}
+
+	]
+
+}
+
+
+
