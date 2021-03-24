@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+var address = "http://dfd24fe9ce51.ngrok.io";
+
+var t1 = Date.now();
+var t2;
+
+var max = 100000;
+var failed = false;
+
+var httpReq = (window.XMLHttpRequest)?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");
+if(httpReq == null) {
+    console.log("Error: XMLHttpRequest failed to initiate.");
+}
+httpReq.onreadystatechange = function() {
+
+    var failTimer = setTimeout(function() {
+                               failed = true;
+                               httpReq.abort();
+                               }, max);
+
+    if (httpReq.readyState == 4) {  //Completed loading
+        if (!failed && (httpReq.status == 200 || httpReq.status == 0)) {
+
+            clearTimeout(failTimer);
+
+            t2 = Date.now();
+
+            var timeTotal = (t2 - t1);
+            if(timeTotal > max) {
+                onFail();
+            } else {
+                onSuccess(timeTotal);
+            }
+
+        }
+        else {  //Otherwise, there was a problem while loading
+            console.log("Error " + httpReq.status + " has occurred.");
+            onFail();
+        }
+    }
+}
+try {
+    httpReq.open("GET", address, true);
+    httpReq.send(null);
+
+} catch(e) {
+    console.log("Error retrieving data httpReq. Some browsers only accept cross-domain request with HTTP.");
+    onFail();
+}
+
+
+function onSuccess(timeTotal) {
+
+    alert("Time needed to connect: " + timeTotal);
+}
+function onFail() {
+    alert("Well this isn't good");
+}
+</script>
+</head>
+<body>
+
+<h2>This is a heading</h2>
+
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+
+<button>Click me</button>
+
+</body>
+</html>
+
