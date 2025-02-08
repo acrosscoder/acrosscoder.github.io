@@ -1,31 +1,54 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Scanner</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
-    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode" defer></script>
+    <style>
+        #reader {
+            width: 300px;
+            margin: auto;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-        <h1 class="text-2xl font-bold mb-4 text-center">QR Code Scanner</h1>
-        <div id="reader" class="w-full mb-4"></div>
-        <div id="result" class="text-center text-lg font-semibold text-gray-700"></div>
-    </div>
-
+<body>
+    <h2 style="text-align: center;">QR Code Scanner</h2>
+    <div id="reader"></div>
+    <div id="output">Scan a QR code...</div>
+    <button id="startButton">Start Scanning</button>
+    <button id="stopButton">Stop Scanning</button>
+    
     <script>
-        function onScanSuccess(decodedText, decodedResult) {
-            document.getElementById('result').innerText = `Scanned Result: ${decodedText}`;
+        let html5QrCode;
+        function onScanSuccess(decodedText) {
+            document.getElementById("output").innerText = "Scanned Code: " + decodedText;
         }
-
         function onScanFailure(error) {
-            console.warn(`QR Code scan error: ${error}`);
+            console.warn(error);
         }
-
-        let html5QrcodeScanner = new Html5QrcodeScanner(
-            "reader", { fps: 10, qrbox: 250 });
-        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+        document.getElementById("startButton").addEventListener("click", () => {
+            html5QrCode = new Html5Qrcode("reader");
+            html5QrCode.start(
+                { facingMode: "environment" },
+                { fps: 10, qrbox: 250 },
+                onScanSuccess,
+                onScanFailure
+            );
+        });
+        document.getElementById("stopButton").addEventListener("click", () => {
+            if (html5QrCode) {
+                html5QrCode.stop().then(() => {
+                    document.getElementById("output").innerText = "Scanning Stopped";
+                }).catch(err => console.error(err));
+            }
+        });
     </script>
 </body>
 </html>
