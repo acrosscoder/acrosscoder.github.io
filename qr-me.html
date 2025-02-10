@@ -6,6 +6,9 @@
     <title>QR Code Scanner</title>
     <script src="https://unpkg.com/html5-qrcode" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
     <h2 class="text-2xl font-semibold text-gray-700 mb-6">QR Code Scanner</h2>
@@ -35,7 +38,10 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     <script>
         let html5QrCode;
 
@@ -80,7 +86,12 @@
             resultText.select();
             document.execCommand("copy");
 
-            alert("Copied to clipboard!");
+            // Toastr notification for copy success
+            toastr.success('Copied to clipboard!', 'Success', {
+                closeButton: true,
+                progressBar: true,
+                timeOut: 3000,
+            });
         });
     </script>
 </body>
