@@ -5,25 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Scanner</title>
     <script src="https://unpkg.com/html5-qrcode" defer></script>
-    <style>
-        #reader {
-            width: 300px;
-            margin: auto;
-        }
-        #output {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h2 style="text-align: center;">QR Code Scanner</h2>
-    <div id="reader"></div>
-    <div id="output">Scan a QR code...</div>
-    <button id="startButton">Start Scanning</button>
-    <button id="stopButton">Stop Scanning</button>
+<body class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <h2 class="text-2xl font-semibold text-gray-700 mb-6">QR Code Scanner</h2>
+    
+    <div id="reader" class="w-80 border border-gray-300 rounded-lg shadow-md"></div>
+    
+    <div id="output" class="mt-6 text-lg font-bold text-gray-700">Scan a QR code...</div>
+    
+    <div class="mt-8 flex space-x-4">
+        <button id="startButton" class="px-4 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 focus:outline-none">
+            Start Scanning
+        </button>
+        <button id="stopButton" class="px-4 py-2 bg-red-500 text-white rounded-md shadow hover:bg-red-600 focus:outline-none">
+            Stop Scanning
+        </button>
+    </div>
     
     <script>
         let html5QrCode;
